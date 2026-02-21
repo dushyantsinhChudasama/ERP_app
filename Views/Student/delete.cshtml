@@ -1,15 +1,48 @@
-﻿@{
+﻿@model ERP_Demo.Models.Student
+
+@{
     ViewData["Title"] = "Delete Student";
 }
 
-<div class="card p-4 shadow-sm text-center">
-    <h4 class="text-danger">Delete Student</h4>
-    <p class="mt-3">Are you sure you want to delete <strong>Rahul Sharma</strong>?</p>
+<div class="card p-4 shadow-sm">
+    <h4 class="mb-4 text-danger">Confirm Delete</h4>
 
-    <div class="mt-4">
-        <button class="btn btn-danger">
-            <i class="bi bi-trash"></i> Yes, Delete
-        </button>
-        <button class="btn btn-secondary">Cancel</button>
-    </div>
+    <!-- post to /Student/Delete/{id} so the controller gets 'id' from route -->
+    <form asp-controller="Student" asp-action="Delete" asp-route-id="@Model.Student_roll" method="post">
+        @Html.AntiForgeryToken()
+
+        <input asp-for="Student_roll" type="hidden" />
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Roll Number</label>
+            <input asp-for="Student_roll" class="form-control" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Student Name</label>
+            <input asp-for="Student_name" class="form-control" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Date of Birth</label>
+            <input asp-for="DOB" class="form-control" type="date" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Gender</label>
+            <input asp-for="gender" class="form-control" readonly />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label fw-semibold">Age</label>
+            <input asp-for="Age" class="form-control" readonly />
+        </div>
+
+        <div class="mt-3 d-flex gap-2">
+            <button type="submit" class="btn btn-danger">
+                <i class="bi bi-trash"></i> Delete
+            </button>
+            <a asp-controller="Student" asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
 </div>

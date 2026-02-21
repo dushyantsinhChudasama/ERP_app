@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ERP_Demo.Models.DATABASEFOLDER;
@@ -40,25 +41,78 @@ namespace ERP_Demo.Controllers
                 return RedirectToAction("Index");
             }
 
-            // Return the model so validation messages & entered values persist
             ViewData["Title"] = "Add Student";
             return View(s);
         }
 
-        // Shows the update/edit page for a student
-        public IActionResult Update(int id)
+        // GET: /Student/Update/5
+        public async Task<IActionResult> Update(int id)
         {
+            var student = await db.student.FindAsync(id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+
             ViewData["Title"] = "Edit Student";
-            ViewData["StudentId"] = id;
-            return View("update");
+            return View(student);
         }
 
-        // Shows the delete confirmation page for a student
-        public IActionResult Delete(int id)
+        // POST: /Student/Update/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int id, Student s)
         {
+            if (id != s.Student_roll)
+                return BadRequest();
+
+            if (!ModelState.IsValid)
+            {
+                ViewData["Title"] = "Edit Student";
+                return View(s);
+            }
+
+            try
+            {
+                db.Update(s);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!db.student.Any(e => e.Student_roll == id))
+                    return NotFound();
+                throw;
+            }
+        }
+
+        // GET: /Student/Delete/5
+        public async Task<IActionResult> Delete(int id)
+        {
+            var student = await db.student.FindAsync(id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+
             ViewData["Title"] = "Delete Student";
-            ViewData["StudentId"] = id;
-            return View("delete");
+            return View(student);
+        }
+
+        // POST: /Student/Delete/{id}
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var student = await db.student.FindAsync(id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+
+            db.student.Remove(student);
+            await db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
