@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - School ERP</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+        :root {
+            --sidebar-bg: #0b3b43;       /* deep teal */
+            --sidebar-text: #d7f6f5;     /* soft mint */
+            --sidebar-hover: #07575b;    /* darker teal on hover */
+            --accent: #06b6d4;           /* bright teal accent */
+            --page-bg: #f6f9fb;          /* very light background */
+            --card-bg: #ffffff;
+            --topbar-border: #e6eef0;
+        }
+
+        :root {
+            --sidebar-bg: #0b3b43;       /* deep teal */
+            --sidebar-text: #d7f6f5;     /* soft mint */
+            --sidebar-hover: #07575b;    /* darker teal on hover */
+            --accent: #06b6d4;           /* bright teal accent */
+            --page-bg: #f6f9fb;          /* very light background */
+            --card-bg: #ffffff;
+            --topbar-border: #e6eef0;
+        }
+
+        :root {
+            --sidebar-bg: #0b3b43;       /* deep teal */
+            --sidebar-text: #d7f6f5;     /* soft mint */
+            --sidebar-hover: #07575b;    /* darker teal on hover */
+            --accent: #06b6d4;           /* bright teal accent */
+            --page-bg: #f6f9fb;          /* very light background */
+            --card-bg: #ffffff;
+            --topbar-border: #e6eef0;
+        }
+
+        :root {
+            --sidebar-bg: #0b3b43;       /* deep teal */
+            --sidebar-text: #d7f6f5;     /* soft mint */
+            --sidebar-hover: #07575b;    /* darker teal on hover */
+            --accent: #06b6d4;           /* bright teal accent */
+            --page-bg: #f6f9fb;          /* very light background */
+            --card-bg: #ffffff;
+            --topbar-border: #e6eef0;
+        }
+
+        :root {
+            --sidebar-bg: #0b3b43;       /* deep teal */
+            --sidebar-text: #d7f6f5;     /* soft mint */
+            --sidebar-hover: #07575b;    /* darker teal on hover */
+            --accent: #06b6d4;           /* bright teal accent */
+            --page-bg: #f6f9fb;          /* very light background */
+            --card-bg: #ffffff;
+            --topbar-border: #e6eef0;
+        }
+
+        :root {
+            --sidebar-bg: #0b3b43;       /* deep teal */
+            --sidebar-text: #d7f6f5;     /* soft mint */
+            --sidebar-hover: #07575b;    /* darker teal on hover */
+            --accent: #06b6d4;           /* bright teal accent */
+            --page-bg: #f6f9fb;          /* very light background */
+            --card-bg: #ffffff;
+            --topbar-border: #e6eef0;
+        }
+
+        body {
+            background-color: var(--page-bg);
+            color: #0f172a;
+        }
+
+        .sidebar {
+            height: 100vh;
+            background-color: #1e293b;
+            color: white;
+            position: fixed;
+            width: 240px;
+        }
+
+        .sidebar a {
+            color: #cbd5e1;
+            text-decoration: none;
+            display: block;
+            padding: 12px 20px;
+        }
+
+        .sidebar a:hover {
+            background-color: #334155;
+            color: white;
+        }
+
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+
+        .topbar {
+            background: white;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .card-dashboard {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+
+<body>
+
+ <!-- Sidebar -->
+<div class="sidebar">
+    <h4 class="text-center py-3 border-bottom">School ERP</h4>
+
+    <a asp-controller="Home" asp-action="Index">
+        <i class="bi bi-speedometer2"></i> Dashboard
+    </a>
+
+    <!-- Students Menu -->
+    <a class="d-flex justify-content-between align-items-center"
+       data-bs-toggle="collapse"
+       href="#studentMenu"
+       role="button">
+        <span><i class="bi bi-people"></i> Students</span>
+        <i class="bi bi-chevron-down"></i>
+    </a>
+
+    <div class="collapse ps-3" id="studentMenu">
+
+        <a asp-controller="Student" asp-action="Index">
+            <i class="bi bi-list"></i> View Students
+        </a>
+
+        <a asp-controller="Student" asp-action="add">
+            <i class="bi bi-plus-circle"></i> Add Student
+        </a>
+
+        <a asp-controller="Student" asp-action="update">
+            <i class="bi bi-pencil-square"></i> Update Student
+        </a>
+
+        <a asp-controller="Student" asp-action="delete">
+            <i class="bi bi-trash"></i> Remove Student
+        </a>
+
+    </div>
+
+    <a asp-controller="Teachers" asp-action="Index">
+        <i class="bi bi-person-badge"></i> Teachers
+    </a>
+
+    <a asp-controller="Classes" asp-action="Index">
+        <i class="bi bi-journal-bookmark"></i> Classes
+    </a>
+
+    <a asp-controller="Attendance" asp-action="Index">
+        <i class="bi bi-calendar-check"></i> Attendance
+    </a>
+
+    <a asp-controller="Fees" asp-action="Index">
+        <i class="bi bi-cash-stack"></i> Fees
+    </a>
+
+    <a asp-controller="Exams" asp-action="Index">
+        <i class="bi bi-pencil-square"></i> Exams
+    </a>
+
+    <a asp-controller="Reports" asp-action="Index">
+        <i class="bi bi-bar-chart"></i> Reports
+    </a>
+</div>
+
+    <!-- Main Content -->
+    <div class="content">
+
+        <!-- Top Navbar -->
+        <div class="topbar d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">@ViewData["Title"]</h5>
+            <div>
+                <i class="bi bi-bell me-3"></i>
+                <i class="bi bi-person-circle"></i>
+            </div>
+        </div>
+
+        <!-- Page Content -->
+        <div class="container-fluid mt-4">
+            @RenderBody()
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

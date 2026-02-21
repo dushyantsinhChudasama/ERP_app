@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ERP_Demo.Models.Student>
+
+@{
+    ViewData["Title"] = "Students";
+}
+
+<div class="card p-4 shadow-sm">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="mb-0">Student List</h4>
+        <a asp-controller="Student" asp-action="Add" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Add Student
+        </a>
+    </div>
+
+    <table class="table table-hover table-bordered align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>DOB</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th width="180">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                foreach (var student in Model)
+                {
+                    <tr>
+                        <td>@student.Student_roll</td>
+                        <td>@student.Student_name</td>
+                        <td>@(student.DOB.ToString("dd-MM-yyyy"))</td>
+                        <td>@student.gender</td>
+                        <td>@student.Age</td>
+                        <td>
+                            <a asp-controller="Student" asp-action="Update" asp-route-id="@student.Student_roll" class="btn btn-warning btn-sm">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a asp-controller="Student" asp-action="Delete" asp-route-id="@student.Student_roll" class="btn btn-danger btn-sm">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6" class="text-center">No students found.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
