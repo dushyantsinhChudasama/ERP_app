@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
 using ERP_Demo.Models;
+using ERP_Demo.Models.DATABASEFOLDER;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ERP_Demo.Controllers
 {
@@ -8,16 +10,27 @@ namespace ERP_Demo.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly SchoolDB _db;
+
+        public HomeController(ILogger<HomeController> logger, SchoolDB db)
         {
             _logger = logger;
+            _db = db;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            ViewData["Title"] = "Dashboard";
+            var totalStudent = await _db.student.CountAsync();
+            ViewBag.TotalStudents = totalStudent;
             return View();
         }
+
+        //public IActionResult Index()
+        //{
+        //    var totalStudent = 
+        //    ViewData["Title"] = "Dashboard";
+        //    return View();
+        //}
 
         public IActionResult Privacy()
         {
